@@ -43,7 +43,7 @@ exports.signup = (req, res) => {
         }
         else{ // Quand on est connecté
             
-            connection.query("SELECT login FROM bibliothecaire where = ?", [req.body.login], (err, result, field) =>{
+            connection.query("SELECT login FROM bibliothecaire where login = ?", [req.body.login], (err, result, field) =>{
                 if(err){
                     res.status(500).json({})
                 }
@@ -55,7 +55,7 @@ exports.signup = (req, res) => {
                                 includeNumbers: true,
                                 length: 5
                             })
-                            let user = [req.body.id, req.body.login, req.body.userName, hash] // value of the placeholder 
+                            let user = [id, req.body.login, req.body.userName, hash] // value of the placeholder 
                             const sql = "INSERT INTO bibliothecaire SET id = ?, login = ?, userName = ?, password = ?" 
                             
                             connection.query(sql, user , (err, result, field) => { // la lance la requête

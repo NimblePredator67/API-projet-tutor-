@@ -76,12 +76,7 @@ exports.getBook = (req, res) =>{
               res.status(400).json({})
           }
           else{
-              if(result.length != 0){
-                  res.status(200).json(result)
-              }
-              else{
-                  res.status(404).json({})
-              }
+              res.status(200).json(result)
           }
       })
     }
